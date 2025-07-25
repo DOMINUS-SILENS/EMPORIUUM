@@ -52,6 +52,41 @@ For detailed setup instructions, see the [Quick Start Guide](./QUICK_START.md).
 - [API Documentation](http://localhost:8000/docs) - Interactive API documentation (when backend is running)
 - [Quick Start Guide](./QUICK_START.md) - Get up and running quickly
 
+### Coding Conventions & Shared Modules
+
+- **Aliases** :
+  - `@shared/*` → `../../shared/*` (TypeScript/tsconfig), `../../shared` (Vite)
+  - `@` → `./src/*` (TypeScript/tsconfig), `./src` (Vite)
+- **Tous les modules partagés** (types, hooks, contextes, services) sont dans le dossier `shared/` et importés via `@shared`.
+- **Factorisation** :
+  - AuthContext, useAuth, authService, schémas Zod, types utilisateurs sont centralisés dans `shared/`.
+  - Ne pas dupliquer ces fichiers dans chaque app, importer uniquement.
+
+### JWT Authentication
+
+- **Backend** :
+  - Utilise FastAPI avec JWT (Bearer) pour l’authentification.
+  - Les endpoints `/auth/login`, `/auth/register`, `/auth/me` gèrent l’auth de base.
+  - Le JWT contient : `sub` (user id), `role` ("vendeur", "acheteur", "admin"), `exp` (expiration).
+- **Frontend** :
+  - Les apps utilisent le service partagé `authService` pour login/register/logout.
+  - Le token JWT est stocké dans `localStorage` sous `access_token`.
+  - La redirection post-login se fait selon le rôle (`/vendeur-app`, `/achteur-app`).
+  - Les hooks et contextes d’auth sont factorisés dans `shared/contexts/AuthContext.tsx`.
+
+### Shared Code Structure
+
+- `shared/types/` : types TypeScript et schémas Zod (validation frontend)
+- `shared/services/` : services d’auth, API, etc.
+- `shared/contexts/` : contextes React partagés (auth, user, etc.)
+- `shared/hooks/` : hooks réutilisables (à factoriser au besoin)
+
+### Contribution & Maintenabilité
+
+- **Toujours factoriser dans `shared/` ce qui est commun à plusieurs apps**.
+- **Respecter les conventions de nommage et de typage** (`full_name`, rôles en français, etc.).
+- **Tenir à jour cette documentation lors de toute évolution majeure de l’architecture.**
+
 ## Project Structure
 
 ```
