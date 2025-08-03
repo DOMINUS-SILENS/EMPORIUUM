@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Search, Filter, Edit, Trash2, Eye } from 'lucide-react';
-import { useProducts } from '@/hooks/useProducts';
+import { useVendeurProducts } from '@monorepo/hooks-shared/src/products/useVendeurProducts';
 
 const ProductsContent: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useVendeurProducts();
 
   if (loading) return <div className="p-6">Chargement...</div>;
   if (error) return <div className="p-6 text-red-600">Erreur: {error}</div>;

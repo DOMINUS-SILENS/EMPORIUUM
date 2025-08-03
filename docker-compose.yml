@@ -1,149 +1,85 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: ecommerce
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
 
   backend:
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
-    environment:
-      ENVIRONMENT: development
-      DEBUG: "True"
-      PYTHONPATH: /app
-      SECRET_KEY: your-secret-key-here-change-this-in-production
-      ALGORITHM: HS256
-      ACCESS_TOKEN_EXPIRE_MINUTES: "1440"
-
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/ecommerce
-      POSTGRES_SERVER: db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: ecommerce
-      SQLALCHEMY_DATABASE_URI: postgresql://postgres:postgres@db:5432/ecommerce
-
-      FIRST_SUPERUSER_EMAIL: admin@example.com
-      FIRST_SUPERUSER_PASSWORD: admin123
-      FIRST_SUPERUSER_FULL_NAME: "Admin System"
-
-      CORS_ORIGINS: http://localhost:3000,http://localhost:3001,http://localhost:3002
-
-      LOG_LEVEL: INFO
-      LOG_FILE: /app/backend.log
-    depends_on:
-      - db
+    build:
+      context: ./apps/backend
+    container_name: backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
-      - ./shared:/app/shared
-    working_dir: /app
-    command: >
-      sh -c "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
-    networks:
-      - ecommerce-network
-
-  welcome-app:
-    build:
-      context: .
-      dockerfile: ./apps/welcome-app/Dockerfile
-      args:
-        NODE_ENV: production
-    container_name: welcome-app
-    hostname: welcome-app
-    restart: unless-stopped
-    ports:
-      - "3000:80"
-    environment:
-      NODE_ENV: production
-      VITE_API_URL: http://backend:8000
+      - ./apps/backend:/app
+    env_file:
+      - ./apps/backend/.env
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
-      backend:
-        condition: service_healthy
+      - db
+
+  acheteur-app:
+    build:
+      context: ./apps/acheteur-app
+    container_name: acheteur-app
+    ports:
+      - "3000:3000"
     volumes:
-      - ./apps/welcome-app:/app
-      - ./shared:/app/shared
+      - ./apps/acheteur-app:/app
+    command: pnpm dev
     working_dir: /app
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:80/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-    networks:
-      - ecommerce-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 512M
-        reservations:
-          cpus: '0.25'
-          memory: 256M
+    env_file:
+      - ./apps/acheteur-app/.env
 
   vendeur-app:
     build:
-      context: .
-      dockerfile: ./apps/vendeur-app/Dockerfile
-      args:
-        NODE_ENV: production
+      context: ./apps/vendeur-app
     container_name: vendeur-app
-    hostname: vendeur-app
-    restart: unless-stopped
     ports:
-      - "3001:80"
-    environment:
-      NODE_ENV: production
-      VITE_API_URL: http://backend:8000
-    depends_on:
-      - backend
+      - "3001:3000"
     volumes:
       - ./apps/vendeur-app:/app
-      - ./shared:/app/shared
+    command: pnpm dev
     working_dir: /app
-    networks:
-      - ecommerce-network
+    env_file:
+      - ./apps/vendeur-app/.env
 
-  achteur-app:
+  welcome-app:
     build:
-      context: .
-      dockerfile: ./apps/achteur-app/Dockerfile
-      args:
-        NODE_ENV: development
-    container_name: achteur-app
-    hostname: achteur-app
-    restart: unless-stopped
+      context: ./apps/welcome-app
+    container_name: welcome-app
     ports:
-      - "3002:80"
-    environment:
-      NODE_ENV: development
-      VITE_API_URL: http://backend:8000
-    depends_on:
-      - backend
+      - "3002:3000"
     volumes:
-      - ./apps/achteur-app:/app
-      - ./shared:/app/shared
+      - ./apps/welcome-app:/app
+    command: pnpm dev
     working_dir: /app
-    networks:
-      - ecommerce-network
+    env_file:
+      - ./apps/welcome-app/.env
 
-networks:
-  ecommerce-network:
-    driver: bridge
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: commerc_db
+      POSTGRES_USER: commerc_user
+      POSTGRES_PASSWORD: commerc_pass
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - acheteur-app
+      - vendeur-app
+      - welcome-app
+      - backend
 
 volumes:
-  db_data:
+  postgres_data:

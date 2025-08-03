@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAppContext } from '@/contexts/AppContext';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useAppContext } from '@monorepo/hooks-shared/src/contexts/AppContext';
+import { useIsMobile } from '@hooks/shared/use-mobile';
 import DashboardHeader from './DashboardHeader';
 import Sidebar from './Sidebar';
 import DashboardContent from './DashboardContent';

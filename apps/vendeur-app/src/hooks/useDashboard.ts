@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import VendeurApiService, { DashboardStats } from '../services/api';
+import VendeurApiService, { DashboardStats } from '@/services/api';
 
 export const useDashboard = () => {
   const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -30,3 +30,4 @@ export const useDashboard = () => {
     refetch: fetchDashboardStats
   };
 };
+

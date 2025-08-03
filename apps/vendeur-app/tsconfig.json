@@ -7,8 +7,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["../../shared/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@ui-core/*": ["../../packages/ui-core/*"],
+
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

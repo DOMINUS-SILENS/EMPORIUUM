@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": [
+        "packages/types/src/*"
+      ],
+      "@types-user/*": [
+        "packages/types-user/src/*"
+      ],
+      "@shared-types/*": [
+        "packages/shared-types/src/*"
+      ],
+      "@ui-core/*": [
+        "packages/ui-core/src/*"
+      ],
+      "@ui/*": [
+        "packages/ui/src/*"
+      ],
+      "@components/*": [
+        "packages/components/*"
+      ],
+      "@utils/*": [
+        "packages/utils/src/*"
+      ],
+      "@services/*": [
+        "packages/services/src/*"
+      ],
+      "@api-client/*": [
+        "packages/api-client/src/*"
+      ],
+      "@hooks/*": [
+        "packages/hooks/src/*"
+      ],
+      "@hooks-auth/*": [
+        "packages/hooks-auth/src/*"
+      ],
+      "@hooks-shared/*": [
+        "packages/hooks-shared/src/*"
+      ],
+      "@schemas/*": [
+        "packages/schemas/src/*"
+      ],
+      "@schemas-zod/*": [
+        "packages/schemas-zod/src/*"
+      ],
+      "@form-generator/*": [
+        "packages/form-generator/src/*"
+      ],
+      "@form-configs/*": [
+        "packages/form-configs/src/*"
+      ],
+      "@config-vite/*": [
+        "packages/config-vite/src/*"
+      ],
+      "@config-env/*": [
+        "packages/config-env/src/*"
+      ],
+      "@py-common/*": [
+        "packages/py-common/src/*"
+      ]
+    }
+  }
+}

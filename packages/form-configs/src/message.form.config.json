@@ -1,0 +1,59 @@
+{
+  "formName": "message",
+  "fields": [
+    {
+      "name": "content",
+      "component": "input",
+      "type": "text",
+      "label": "message.content.label",
+      "placeholder": "message.content.placeholder",
+      "description": "message.content.description",
+      "required": true
+    },
+    {
+      "name": "id",
+      "component": "input",
+      "type": "number",
+      "label": "message.id.label",
+      "placeholder": "message.id.placeholder",
+      "description": "message.id.description",
+      "required": true
+    },
+    {
+      "name": "sender_id",
+      "component": "input",
+      "type": "number",
+      "label": "message.sender_id.label",
+      "placeholder": "message.sender_id.placeholder",
+      "description": "message.sender_id.description",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "component": "datetime",
+      "type": "datetime",
+      "label": "message.created_at.label",
+      "placeholder": "message.created_at.placeholder",
+      "description": "message.created_at.description",
+      "required": true
+    },
+    {
+      "name": "is_read",
+      "component": "checkbox",
+      "type": "boolean",
+      "label": "message.is_read.label",
+      "placeholder": "message.is_read.placeholder",
+      "description": "message.is_read.description",
+      "required": true
+    },
+    {
+      "name": "sender",
+      "component": "object",
+      "type": "object",
+      "label": "message.sender.label",
+      "placeholder": "message.sender.placeholder",
+      "description": "message.sender.description",
+      "required": true
+    }
+  ]
+}

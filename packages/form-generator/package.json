@@ -1,0 +1,19 @@
+{
+  "name": "@form/generator",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "generate": "node dist/index.js"
+  },
+  "dependencies": {
+    "glob": "^8.0.0",
+    "typescript": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.0.0",
+    "esbuild": "^0.17.0"
+  }
+}

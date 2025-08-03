@@ -1,0 +1,50 @@
+{
+  "formName": "conversation",
+  "fields": [
+    {
+      "name": "id",
+      "component": "input",
+      "type": "number",
+      "label": "conversation.id.label",
+      "placeholder": "conversation.id.placeholder",
+      "description": "conversation.id.description",
+      "required": true
+    },
+    {
+      "name": "user1",
+      "component": "object",
+      "type": "object",
+      "label": "conversation.user1.label",
+      "placeholder": "conversation.user1.placeholder",
+      "description": "conversation.user1.description",
+      "required": true
+    },
+    {
+      "name": "user2",
+      "component": "object",
+      "type": "object",
+      "label": "conversation.user2.label",
+      "placeholder": "conversation.user2.placeholder",
+      "description": "conversation.user2.description",
+      "required": true
+    },
+    {
+      "name": "messages",
+      "component": "array",
+      "type": "array",
+      "label": "conversation.messages.label",
+      "placeholder": "conversation.messages.placeholder",
+      "description": "conversation.messages.description",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "component": "datetime",
+      "type": "datetime",
+      "label": "conversation.created_at.label",
+      "placeholder": "conversation.created_at.placeholder",
+      "description": "conversation.created_at.description",
+      "required": true
+    }
+  ]
+}

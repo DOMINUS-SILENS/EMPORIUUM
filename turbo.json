@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "patch-deps": {
+      "cache": false,
+      "outputs": []
+    },
+    "fix-imports": {
+      "cache": false,
+      "outputs": []
+    },
+    "sync-aliases": {
+      "cache": false,
+      "outputs": []
+    },
+    "check-aliases": {
+      "cache": false,
+      "outputs": []
+    },
+    "verify-imports": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-imports": {
+      "cache": false,
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["check-aliases", "verify-imports"],
+      "outputs": []
+    },
+    "prebuild": {
+      "dependsOn": ["check-aliases", "verify-imports"],
+      "outputs": []
+    },
+    "predev": {
+      "dependsOn": ["check-aliases"],
+      "outputs": []
+    }
+  }
+}

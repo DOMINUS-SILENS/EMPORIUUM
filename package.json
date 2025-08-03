@@ -1,0 +1,68 @@
+{
+  "name": "dominus-silens-commercium",
+  "private": true,
+  "packageManager": "pnpm@9.6.0",
+  "scripts": {
+    "build": "npx turbo build",
+    "dev": "npx turbo dev",
+    "lint": "npx turbo lint",
+    "test": "npx turbo test",
+    "generate": "npx turbo generate",
+    "generate:schemas:json": "python scripts/generate_json_schemas.py",
+    "generate:schemas:zod": "pwsh scripts/generate_zod_from_json.ps1",
+    "generate:forms": "python scripts/generate_form_configs.py",
+    "clean": "node scripts/sacred-cleanup.js",
+    "fix-imports": "node scripts/fix-imports.js",
+    "sync-aliases": "node scripts/sync-aliases.js",
+    "check-aliases": "node scripts/check-aliases.js",
+    "verify-imports": "node scripts/verify-imports.js",
+    "test-imports": "node scripts/test-imports.js",
+    "verify:all": "./verify-imports.sh --all",
+    "prebuild": "npx turbo prebuild",
+    "predev": "npx turbo predev",
+    "postinstall": "pnpm sync-aliases"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "clsx": "^2.1.1",
+    "react": "^19.1.0",
+    "tailwind-merge": "^3.3.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.5",
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^24.1.0",
+    "@types/parse-json": "^4.0.2",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/resolve": "^1.20.6",
+    "@types/trusted-types": "^2.0.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "glob": "^10.3.10",
+    "turbo": "^2.0.9",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominus-silens/commercium.git"
+  },
+  "keywords": [
+    "monorepo",
+    "e-commerce",
+    "typescript",
+    "react",
+    "fastapi",
+    "turbo"
+  ],
+  "author": "Dominus Silens",
+  "license": "MIT"
+}

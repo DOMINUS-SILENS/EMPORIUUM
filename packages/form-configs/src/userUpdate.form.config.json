@@ -1,0 +1,44 @@
+{
+  "formName": "userUpdate",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "userUpdate.email.label",
+      "placeholder": "userUpdate.email.placeholder",
+      "description": "userUpdate.email.description",
+      "required": false
+    },
+    {
+      "name": "full_name",
+      "component": "input",
+      "type": "text",
+      "label": "userUpdate.full_name.label",
+      "placeholder": "userUpdate.full_name.placeholder",
+      "description": "userUpdate.full_name.description",
+      "required": false
+    },
+    {
+      "name": "password",
+      "component": "input",
+      "type": "password",
+      "label": "userUpdate.password.label",
+      "placeholder": "userUpdate.password.placeholder",
+      "description": "userUpdate.password.description",
+      "required": false,
+      "validation": {
+        "minLength": 8
+      }
+    },
+    {
+      "name": "is_active",
+      "component": "input",
+      "type": "text",
+      "label": "userUpdate.is_active.label",
+      "placeholder": "userUpdate.is_active.placeholder",
+      "description": "userUpdate.is_active.description",
+      "required": false
+    }
+  ]
+}

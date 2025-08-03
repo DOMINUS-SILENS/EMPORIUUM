@@ -1,0 +1,23 @@
+{
+  "formName": "messageCreate",
+  "fields": [
+    {
+      "name": "content",
+      "component": "input",
+      "type": "text",
+      "label": "messageCreate.content.label",
+      "placeholder": "messageCreate.content.placeholder",
+      "description": "messageCreate.content.description",
+      "required": true
+    },
+    {
+      "name": "conversation_id",
+      "component": "input",
+      "type": "number",
+      "label": "messageCreate.conversation_id.label",
+      "placeholder": "messageCreate.conversation_id.placeholder",
+      "description": "messageCreate.conversation_id.description",
+      "required": true
+    }
+  ]
+}

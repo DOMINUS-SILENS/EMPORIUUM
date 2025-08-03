@@ -1,8 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import AppLayout from '@/components/AppLayout';
-import { AppProvider } from '@/contexts/AppContext';
-import { AuthGuard, User } from '@shared/utils/auth';
+import { AppContext } from "@hooks/shared/contexts/AppContext"; 
+import { AuthGuard, User } from '@utils/auth';
+
 
 const Index: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -38,3 +39,4 @@ const Index: React.FC = () => {
 };
 
 export default Index;
+

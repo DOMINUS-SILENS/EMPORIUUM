@@ -1,0 +1,23 @@
+{
+  "formName": "login",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "login.email.label",
+      "placeholder": "login.email.placeholder",
+      "description": "login.email.description",
+      "required": true
+    },
+    {
+      "name": "password",
+      "component": "input",
+      "type": "password",
+      "label": "login.password.label",
+      "placeholder": "login.password.placeholder",
+      "description": "login.password.description",
+      "required": true
+    }
+  ]
+}

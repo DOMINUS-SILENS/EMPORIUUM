@@ -1,20 +1,11 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { createAppAliases } from "../../packages/config-vite/vite.alias";
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-  },
-  plugins: [
-    react()
-  ].filter(Boolean),
+export default defineConfig({
+  plugins: [react()],
   resolve: {
-    alias: [
-      { find: '@shared', replacement: path.resolve(__dirname, '../../shared') },
-      { find: '@', replacement: path.resolve(__dirname, './src') }
-    ],
+    alias: createAppAliases(import.meta.url),
   },
-}));
+});

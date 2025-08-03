@@ -1,0 +1,45 @@
+{
+  "formName": "userCreate",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "userCreate.email.label",
+      "placeholder": "userCreate.email.placeholder",
+      "description": "userCreate.email.description",
+      "required": true
+    },
+    {
+      "name": "full_name",
+      "component": "input",
+      "type": "text",
+      "label": "userCreate.full_name.label",
+      "placeholder": "userCreate.full_name.placeholder",
+      "description": "userCreate.full_name.description",
+      "required": false
+    },
+    {
+      "name": "role",
+      "component": "select",
+      "type": "text",
+      "label": "userCreate.role.label",
+      "placeholder": "userCreate.role.placeholder",
+      "description": "userCreate.role.description",
+      "required": true,
+      "enumValues": ["acheteur", "vendeur", "admin"]
+    },
+    {
+      "name": "password",
+      "component": "input",
+      "type": "password",
+      "label": "userCreate.password.label",
+      "placeholder": "userCreate.password.placeholder",
+      "description": "userCreate.password.description",
+      "required": true,
+      "validation": {
+        "minLength": 8
+      }
+    }
+  ]
+}

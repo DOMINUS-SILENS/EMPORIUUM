@@ -1,0 +1,33 @@
+{
+  "formName": "userBase",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "userBase.email.label",
+      "placeholder": "userBase.email.placeholder",
+      "description": "userBase.email.description",
+      "required": true
+    },
+    {
+      "name": "full_name",
+      "component": "input",
+      "type": "text",
+      "label": "userBase.full_name.label",
+      "placeholder": "userBase.full_name.placeholder",
+      "description": "userBase.full_name.description",
+      "required": false
+    },
+    {
+      "name": "role",
+      "component": "select",
+      "type": "text",
+      "label": "userBase.role.label",
+      "placeholder": "userBase.role.placeholder",
+      "description": "userBase.role.description",
+      "required": true,
+      "enumValues": ["acheteur", "vendeur", "admin"]
+    }
+  ]
+}

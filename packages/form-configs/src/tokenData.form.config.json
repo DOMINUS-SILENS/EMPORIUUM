@@ -1,0 +1,23 @@
+{
+  "formName": "tokenData",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "tokenData.email.label",
+      "placeholder": "tokenData.email.placeholder",
+      "description": "tokenData.email.description",
+      "required": false
+    },
+    {
+      "name": "scopes",
+      "component": "input",
+      "type": "text",
+      "label": "tokenData.scopes.label",
+      "placeholder": "tokenData.scopes.placeholder",
+      "description": "tokenData.scopes.description",
+      "required": true
+    }
+  ]
+}

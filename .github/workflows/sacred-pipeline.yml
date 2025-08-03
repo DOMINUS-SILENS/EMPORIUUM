@@ -1,0 +1,72 @@
+name: 🧪 Sacred CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧿 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🌀 Setup Node & Python
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: 🧪 Install dependencies
+        run: |
+          corepack enable
+          pnpm install
+          pip install -r apps/backend/requirements.txt
+
+  build-and-test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛠 Build toutes les apps
+        run: pnpm turbo run build
+
+      - name: 🧪 Lancer tous les tests JS
+        run: pnpm turbo run test
+
+      - name: 🧪 Lancer les tests Python
+        run: pytest apps/backend/tests
+
+  docker-deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧿 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📦 Build Docker images
+        run: docker-compose -f docker-compose.prod.yml build
+
+      - name: "🚀 Push vers le serveur (ex: VPS)"
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          source: "."
+          target: "~/commercium"
+
+      - name: 🔄 Redémarrer les services
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cd ~/commercium
+            docker-compose down
+            docker-compose up -d --build

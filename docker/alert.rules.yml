@@ -1,6 +1,11 @@
+# Prometheus Alertmanager rules
+# Refactored for clarity and maintainability
+
+# Alert groups
 groups:
   - name: example_alerts
     rules:
+      # Alert when high error rate occurs
       - alert: HighErrorRate
         expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
         for: 5m
@@ -10,6 +15,7 @@ groups:
           summary: "High error rate detected"
           description: "More than 5% of requests are failing with 5xx errors."
 
+      # Alert when high latency is detected
       - alert: HighLatency
         expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 1
         for: 5m
@@ -17,4 +23,4 @@ groups:
           severity: warning
         annotations:
           summary: "High latency detected"
-          description: "95th percentile latency is above 1s." 
+          description: "95th percentile latency is above 1s."

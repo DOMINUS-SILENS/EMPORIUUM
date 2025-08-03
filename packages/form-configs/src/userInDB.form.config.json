@@ -1,0 +1,59 @@
+{
+  "formName": "userInDB",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "userInDB.email.label",
+      "placeholder": "userInDB.email.placeholder",
+      "description": "userInDB.email.description",
+      "required": true
+    },
+    {
+      "name": "full_name",
+      "component": "input",
+      "type": "text",
+      "label": "userInDB.full_name.label",
+      "placeholder": "userInDB.full_name.placeholder",
+      "description": "userInDB.full_name.description",
+      "required": false
+    },
+    {
+      "name": "role",
+      "component": "input",
+      "type": "text",
+      "label": "userInDB.role.label",
+      "placeholder": "userInDB.role.placeholder",
+      "description": "userInDB.role.description",
+      "required": true
+    },
+    {
+      "name": "id",
+      "component": "input",
+      "type": "number",
+      "label": "userInDB.id.label",
+      "placeholder": "userInDB.id.placeholder",
+      "description": "userInDB.id.description",
+      "required": true
+    },
+    {
+      "name": "is_active",
+      "component": "input",
+      "type": "text",
+      "label": "userInDB.is_active.label",
+      "placeholder": "userInDB.is_active.placeholder",
+      "description": "userInDB.is_active.description",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "component": "input",
+      "type": "text",
+      "label": "userInDB.created_at.label",
+      "placeholder": "userInDB.created_at.placeholder",
+      "description": "userInDB.created_at.description",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "formName": "user",
+  "fields": [
+    {
+      "name": "email",
+      "component": "input",
+      "type": "email",
+      "label": "user.email.label",
+      "placeholder": "user.email.placeholder",
+      "description": "user.email.description",
+      "required": true
+    },
+    {
+      "name": "full_name",
+      "component": "input",
+      "type": "text",
+      "label": "user.full_name.label",
+      "placeholder": "user.full_name.placeholder",
+      "description": "user.full_name.description",
+      "required": false
+    },
+    {
+      "name": "role",
+      "component": "select",
+      "type": "text",
+      "label": "user.role.label",
+      "placeholder": "user.role.placeholder",
+      "description": "user.role.description",
+      "required": true,
+      "enumValues": ["acheteur", "vendeur", "admin"]
+    },
+    {
+      "name": "id",
+      "component": "input",
+      "type": "number",
+      "label": "user.id.label",
+      "placeholder": "user.id.placeholder",
+      "description": "user.id.description",
+      "required": true
+    },
+    {
+      "name": "is_active",
+      "component": "checkbox",
+      "type": "boolean",
+      "label": "user.is_active.label",
+      "placeholder": "user.is_active.placeholder",
+      "description": "user.is_active.description",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "component": "datetime",
+      "type": "datetime",
+      "label": "user.created_at.label",
+      "placeholder": "user.created_at.placeholder",
+      "description": "user.created_at.description",
+      "required": true
+    },
+    {
+      "name": "updated_at",
+      "component": "datetime",
+      "type": "datetime",
+      "label": "user.updated_at.label",
+      "placeholder": "user.updated_at.placeholder",
+      "description": "user.updated_at.description",
+      "required": false
+    }
+  ]
+}

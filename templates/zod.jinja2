@@ -1,0 +1,50 @@
+{#-
+This is a Jinja2 template for datamodel-code-generator to generate Zod schemas.
+-#}
+import { z } from 'zod';
+
+{% for import in imports %}
+{{ import }}
+{% endfor %}
+
+{#- Helper macro to map Pydantic/Python types to Zod types -#}
+{%- macro map_type(field) -%}
+    {%- if field.is_list -%}
+        z.array({{ map_type(field.list_item_type) }})
+    {%- elif field.is_enum -%}
+        z.enum([{% for enum_field in field.enum_fields %}'{{ enum_field.name }}'{% if not loop.last %}, {% endif %}{% endfor %}])
+    {%- elif field.type_hint == 'str' or field.type_hint == 'EmailStr' -%}
+        z.string(){% if field.type_hint == 'EmailStr' %}.email(){% endif %}
+    {%- elif field.type_hint == 'int' -%}
+        z.number().int()
+    {%- elif field.type_hint == 'float' -%}
+        z.number()
+    {%- elif field.type_hint == 'bool' -%}
+        z.boolean()
+    {%- elif field.type_hint == 'datetime' -%}
+        z.string().datetime()
+    {%- else -%}
+        {#- It's likely a reference to another model, use z.lazy for circular dependencies -#}
+        z.lazy(() => {{ field.type_hint | replace('Optional[', '') | replace(']', '') }})
+    {%- endif -%}
+    {%- if not field.required -%}.optional(){%- endif -%}
+{%- endmacro -%}
+
+
+{% for model in models %}
+{% if model.is_enum %}
+export const {{ model.name }} = z.enum([
+  {%- for field in model.fields %}
+  '{{ field.name }}',
+  {%- endfor %}
+]);
+{%- else %}
+export const {{ model.name }} = {% if model.base_classes %}{{ model.base_classes[0] }}.extend({% else %}z.object({% endif %}
+  {%- for field in model.fields %}
+  {{ field.name }}: {{ map_type(field) }},
+  {%- endfor %}
+});
+{% endif %}
+
+export type {{ model.name }}Type = z.infer<typeof {{ model.name }}>;
+{% endfor %}

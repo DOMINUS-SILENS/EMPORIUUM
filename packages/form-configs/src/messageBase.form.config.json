@@ -1,0 +1,14 @@
+{
+  "formName": "messageBase",
+  "fields": [
+    {
+      "name": "content",
+      "component": "input",
+      "type": "text",
+      "label": "messageBase.content.label",
+      "placeholder": "messageBase.content.placeholder",
+      "description": "messageBase.content.description",
+      "required": true
+    }
+  ]
+}

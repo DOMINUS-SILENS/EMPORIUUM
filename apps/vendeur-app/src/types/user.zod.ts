@@ -1,1 +1,2 @@
-export * from '@shared/types/user.zod';
+export * from '@types/user.zod';
+

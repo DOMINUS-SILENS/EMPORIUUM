@@ -1,0 +1,6 @@
+{
+  "name": "@monorepo/schemas",
+  "version": "0.1.0",
+  "main": "zod/index.ts",
+  "types": "zod/index.ts"
+}

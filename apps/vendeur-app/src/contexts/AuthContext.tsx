@@ -1,1 +1,3 @@
-export * from '@shared/contexts/AuthContext';
+
+export * from '@hooks/AuthContext';
+

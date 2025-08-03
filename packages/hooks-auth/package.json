@@ -3,5 +3,13 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "private": false
-} 
+  "scripts": {
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "private": false,
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

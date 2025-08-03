@@ -1,0 +1,23 @@
+{
+  "formName": "token",
+  "fields": [
+    {
+      "name": "access_token",
+      "component": "input",
+      "type": "text",
+      "label": "token.access_token.label",
+      "placeholder": "token.access_token.placeholder",
+      "description": "token.access_token.description",
+      "required": true
+    },
+    {
+      "name": "token_type",
+      "component": "input",
+      "type": "text",
+      "label": "token.token_type.label",
+      "placeholder": "token.token_type.placeholder",
+      "description": "token.token_type.description",
+      "required": true
+    }
+  ]
+}

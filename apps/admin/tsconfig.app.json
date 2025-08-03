@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ui/core": ["../../packages/ui-core/src"]
+    }
+  }
+}

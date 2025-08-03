@@ -1,0 +1,14 @@
+{
+  "formName": "conversationCreate",
+  "fields": [
+    {
+      "name": "participant_id",
+      "component": "input",
+      "type": "number",
+      "label": "conversationCreate.participant_id.label",
+      "placeholder": "conversationCreate.participant_id.placeholder",
+      "description": "conversationCreate.participant_id.description",
+      "required": true
+    }
+  ]
+}

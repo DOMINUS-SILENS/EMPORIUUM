@@ -1,0 +1,16 @@
+# docker-compose.prod.yml
+services:
+  backend:
+    build: ./apps/backend
+    ports: [8000:8000]
+  vendeur:
+    build: ./apps/vendeur-app
+    ports: [3001:3000]
+  acheteur:
+    build: ./apps/acheteur-app
+    ports: [3002:3000]
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports: [80:80]
